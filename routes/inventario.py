@@ -47,3 +47,5 @@ def actualizar_stock(id: int, datos: InventarioUpdate):
     conn.commit()
     conn.close()
     return {"mensaje": "Stock actualizado"}
+
+
