@@ -34,7 +34,6 @@ similar a los sistemas usados por bancos comerciales reales.
  Falsos positivos: 12
  Falsos negativos: 10
 
- #Autor Alicia Carballo
-
+ 
 ## Autor
-Tu nombre aquí
+Alicia Carballo 
