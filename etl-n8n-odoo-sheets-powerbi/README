@@ -1,19 +1,15 @@
 
+# ETL Automatizado: n8n-Odoo-Google Sheets-Power BI
 
-# ETL Automatizado: n8n + Odoo + Google Sheets + Power BI
+# Pipeline completo de automatización de datos que integra Google Sheets con unERP (Odoo) usando n8n como orquestador, y conecta los KPIs resultantes a un dashboard interactivo en Power BI.
 
-Pipeline completo de automatización de datos que integra Google Sheets con unERP (Odoo) usando n8n como orquestador, y conecta los KPIs resultantes a un dashboard interactivo en Power BI con medidas DAX.
-
-
+<span style="color:blue">
 Este proyecto simula un flujo de trabajo real de un área de BI/Datos:
 Se capturan pedidos desde una fuente simple como Google Sheets, se sincronizan con un sistema ERP, se calculan indicadores de negocio automáticamente, y se visualizan para la toma de decisiones sin 
-intervención manual una vez configurado, aunque sí requiere mantenimiento periódico (revisión de errores, ajustes de credenciales, mejoras como las documentadas en cada flujo).
-
-
+intervención manual una vez configurado, aunque sí requiere mantenimiento periódico (revisión de errores, ajustes de credenciales, mejoras como las documentadas en cada flujo). </span>
 
 ##Estructura general
 
-```
 Google Sheets (Pedidos_Entrada)
         |
         v
@@ -35,19 +31,11 @@ Google Sheets (Dashboard_Ventas) -- publicado como CSV
         v
    Power BI Desktop
    Tarjetas KPI, gráficas de tendencia, medida DAX personalizada
-```
 
----
 
 ## Resultado visual en Power BI
 
-Dashboard generado a partir del historial de KPIs, mostrando tarjetas principales, evolución de ventas en el tiempo y distribución de pedidos:
-
-![Dashboard Power BI](capturas/dashboard_powerbi.png)
-
-
-
-
+Dashboard generado a partir del historial de KPIs, mostrando tarjetas principales, evolución de ventas en el tiempo y distribución de pedidos: capturas/dashboard_powerbi.png
 
 - **Total de ventas:** $449.86 mil MXN (acumulado del historial)
 - **Total de pedidos:** 51
@@ -69,11 +57,9 @@ incluyendo una limitación conocida (procesamiento de múltiples filas simultán
 Extrae los pedidos de venta de Odoo, calcula KPIs de negocio, y mantiene un
 historial en Google Sheets que alimenta el dashboard de Power BI.
 
-**Documentación completa:** [documentacion/documentacion_flujo2.md](documentacion/documentacion_flujo2.md)
+**Documentación completa:** documentacion/documentacion_flujo2.md
 
 Incluye la evolución del código de cálculo de fechas (de usar la fecha de ejecución del flujo, a usar la fecha real del pedido en Odoo) y el procesode depuración correspondiente.
-
-
 
 ## Pasos para reproducir el proyecto
 
