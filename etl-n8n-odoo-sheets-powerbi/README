@@ -1,4 +1,4 @@
-
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 # ETL Automatizado: n8n-Odoo-Google Sheets-Power BI
 
 # Pipeline completo de automatización de datos que integra Google Sheets con unERP (Odoo) usando n8n como orquestador, y conecta los KPIs resultantes a un dashboard interactivo en Power BI.
