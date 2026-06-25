@@ -94,7 +94,10 @@ Generación de documentación-Python (fpdf2)
 
 
 
-![Autor](https://img.shields.io/badge/Autor-Alicia%20Carballo-2ea44f?style=for-the-badge&logo=github&logoColor=white)
+<p align="center">
+  <img src="https://img.shields.io/badge/Autor-Alicia%20Carballo-green?logo=github" alt="Autor">
+</p>
+
 
 ## Autor
 Alicia Carballo 
