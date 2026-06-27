@@ -1,0 +1,215 @@
+{
+  "name": "ETL2: Odoo → Dashboard Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d26e7346-63ce-4e09-8cd5-a215225c7d67",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "resource": "custom",
+        "customResource": {
+          "__rl": true,
+          "value": "sale.order",
+          "mode": "id"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.odoo",
+      "typeVersion": 2,
+      "position": [
+        192,
+        -16
+      ],
+      "id": "c2fe1fe8-796b-4065-ac57-002844a08473",
+      "name": "Get many records",
+      "credentials": {
+        "odooApiKeyApi": {
+          "id": "tu_id_de_credencial",
+          "name": "Odoo (API Key) account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const pedidos = $input.all();\n\nconst totalPedidos = pedidos.length;\n\nconst totalVentas = pedidos.reduce((sum, p) => {\n  return sum + (p.json.amount_total || 0);\n}, 0);\n\nconst ticketPromedio = totalPedidos > 0 \n  ? (totalVentas / totalPedidos).toFixed(2) \n  : 0;\n\n// En vez de usar \"hoy\", usamos la fecha del pedido más reciente en Odoo\n// date_order es el campo de fecha que Odoo asigna a cada pedido de venta\nconst fechasPedidos = pedidos\n  .map(p => p.json.date_order)\n  .filter(f => f) // quita nulos\n  .sort()\n  .reverse();\n\nconst fechaActualizacion = fechasPedidos.length > 0\n  ? fechasPedidos[0].split(' ')[0]  // toma solo la parte de fecha, sin hora\n  : new Date().toISOString().split('T')[0]; // respaldo si no hay pedidos\n\nreturn [{\n  json: {\n    fecha_actualizacion: fechaActualizacion,\n    total_pedidos: totalPedidos,\n    total_ventas_mxn: totalVentas.toFixed(2),\n    ticket_promedio: ticketPromedio\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        -16
+      ],
+      "id": "2a323dcc-83f4-43dc-8709-14cebf5fd915",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1drUKsXl30GkU4yuTwkc2vBs-aVnUpgdoEQ1J3TO_EKs",
+          "mode": "list",
+          "cachedResultName": "ETL Ventas Portafolio",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1drUKsXl30GkU4yuTwkc2vBs-aVnUpgdoEQ1J3TO_EKs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2971216,
+          "mode": "list",
+          "cachedResultName": "Dashboard_Ventas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1drUKsXl30GkU4yuTwkc2vBs-aVnUpgdoEQ1J3TO_EKs/edit#gid=2971216"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fecha_actualizacion": "=\n{{ $json[\"fecha_actualizacion\"] }}",
+            "total_pedidos": "={{ $json[\"total_pedidos\"] }}",
+            "total_ventas_mxn": "={{ $json[\"total_ventas_mxn\"] }}",
+            "ciudad_top": "Ver Odoo",
+            "producto_top": "Ver Odoo",
+            "ticket_promedio": "={{ $json[\"ticket_promedio\"] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "fecha_actualizacion",
+              "displayName": "fecha_actualizacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "total_pedidos",
+              "displayName": "total_pedidos",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "total_ventas_mxn",
+              "displayName": "total_ventas_mxn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ciudad_top",
+              "displayName": "ciudad_top",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "producto_top",
+              "displayName": "producto_top",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ticket_promedio",
+              "displayName": "ticket_promedio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        608,
+        -16
+      ],
+      "id": "CUENTA_EJEMPLO_GOOGLE_SHEETS",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CUENTA_EJEMPLO_GOOGLE_SHEETS",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get many records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many records": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "9c1a0b8f-0637-4ed7-97ea-d2f448669096",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4c0aeb690002e94a35c6105d135a104268e13fe1ef10c4674c25251c82a7afe2"
+  },
+  "nodeGroups": [],
+  "id": "arvobpUaJtRWiHui",
+  "tags": []
+}
