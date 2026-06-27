@@ -15,14 +15,15 @@ intervención manual una vez configurado, aunque sí requiere mantenimiento peri
 
 ##Estructura general
 
-\`\`\`mermaid
+
+```mermaid
 flowchart LR
     A[Google Sheets] --> B[n8n Flujo 1]
     B --> C[Odoo]
     C --> D[n8n Flujo 2]
     D --> E[Google Sheets Dashboard]
     E --> F[Power BI]
-\`\`\`
+``` 
 
 
 ## Resultado visual en Power BI
