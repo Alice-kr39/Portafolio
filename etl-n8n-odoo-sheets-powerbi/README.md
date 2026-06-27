@@ -1,4 +1,9 @@
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![Google Sheets](https://img.shields.io/badge/Google_Sheets-34A853?style=for-the-badge&logo=googlesheets&logoColor=white)
+![n8n](https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white)
+![Odoo](https://img.shields.io/badge/Odoo-714B67?style=for-the-badge&logo=odoo&logoColor=white)
+
 ## ETL Automatizado: n8n-Odoo-Google Sheets-Power BI
 
 # Pipeline completo de automatización de datos que integra Google Sheets con unERP (Odoo) usando n8n como orquestador, y conecta los KPIs resultantes a un dashboard interactivo en Power BI.
@@ -10,27 +15,14 @@ intervención manual una vez configurado, aunque sí requiere mantenimiento peri
 
 ##Estructura general
 
-Google Sheets (Pedidos_Entrada)
-        |
-        v
-   n8n - Flujo 1
-   Lee pedidos nuevos -> verifica si el cliente existe en Odoo ->
-   crea el contacto si es nuevo -> marca la fila como procesada
-        |
-        v
-   Odoo (Contactos + Pedidos de venta)
-        |
-        v
-   n8n - Flujo 2
-   Extrae pedidos de Odoo -> calcula KPIs (total ventas, pedidos,
-   ticket promedio) -> agrega una fila al historial
-        |
-        v
-Google Sheets (Dashboard_Ventas) -- publicado como CSV
-        |
-        v
-   Power BI Desktop
-   Tarjetas KPI, gráficas de tendencia, medida DAX personalizada
+\`\`\`mermaid
+flowchart LR
+    A[Google Sheets] --> B[n8n Flujo 1]
+    B --> C[Odoo]
+    C --> D[n8n Flujo 2]
+    D --> E[Google Sheets Dashboard]
+    E --> F[Power BI]
+\`\`\`
 
 
 ## Resultado visual en Power BI
@@ -94,9 +86,5 @@ Generación de documentación-Python (fpdf2)
 
 
 ![Autor](https://img.shields.io/badge/Autor-Alicia%20Carballo-green?logo=github)
-
-
-## Autor
-Alicia Carballo 
 
 Proyecto de portafolio personal automatización de datos y BI.
