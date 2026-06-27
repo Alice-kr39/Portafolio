@@ -6,7 +6,7 @@
 
 ## ETL Automatizado: n8n-Odoo-Google Sheets-Power BI
 
-# Pipeline completo de automatización de datos que integra Google Sheets con unERP (Odoo) usando n8n como orquestador, y conecta los KPIs resultantes a un dashboard interactivo en Power BI.
+# Pipeline automatizado de datos que integra Google Sheets con ERP (Odoo) usando n8n y conecta los KPIs resultantes a un dashboard en Power BI.
 
 
 Este proyecto simula un flujo de trabajo real de un área de BI/Datos:
