@@ -1,0 +1,56 @@
+# API Gestión de Tareas
+
+API REST desarrollada con FastAPI y MySQL que permite gestionar tareas con operaciones CRUD completas.
+
+##Tecnologías
+
+- Python 3
+- FastAPI
+- SQLAlchemy
+- MySQL
+- Pydantic
+
+## Estructura del proyecto
+api_tareas/
+├── main.py          # Entrada de la aplicación y configuración CORS
+├── database.py      # Conexión a la base de datos
+├── models.py        # Modelos de SQLAlchemy (tablas)
+├── schemas.py       # Validación de datos con Pydantic
+├── index.html       # Frontend para consumir la API
+└── routes/
+├── init.py
+└── tareas.py    # Endpoints CRUD
+
+## 🚀 Endpoints
+
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| GET | /tareas | Listar todas las tareas |
+| GET | /tareas/{id} | Obtener una tarea |
+| POST | /tareas | Crear nueva tarea |
+| PUT | /tareas/{id} | Actualizar tarea |
+| DELETE | /tareas/{id} | Eliminar tarea |
+
+## Estados de una tarea
+
+- `pendiente`
+- `en_progreso`
+- `completado`
+
+## Cómo correrlo localmente
+
+1. Clonar el repositorio
+2. Crear entorno virtual e instalar dependencias
+```bash
+pip install fastapi uvicorn sqlalchemy pymysql
+```
+3. Configurar la base de datos MySQL en `database.py`
+4. Correr el servidor
+```bash
+uvicorn main:app --reload
+```
+5. Abrir `http://127.0.0.1:8000/docs` para ver la documentación
+
+## Frontend
+
+Abrir `index.html` en el navegador para usar la interfaz visual de gestión de tareas.

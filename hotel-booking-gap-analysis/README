@@ -1,0 +1,33 @@
+
+# International Hotel Booking Analytics
+Prueba técnica para el rol de Analista de Datos. El COO detectó que 
+la inversión en infraestructura no siempre se traduce en mejores 
+reseñas. El objetivo es auditar la operación y definir la estrategia 
+de inversión del próximo año.
+
+## Preguntas de negocio
+- ¿Dónde la calidad base del hotel supera la experiencia real del cliente?
+- ¿Qué segmentos demográficos están penalizando la reputación de la marca?
+- ¿Conviene invertir en remodelación (infraestructura) o capacitación (staff)?
+
+## Base de datos
+`International Hotel Booking Analytics`
+- `hotels.csv` — atributos físicos y puntuaciones base por categoría
+- `users.csv` — demografía (edad, país)
+- `reviews.csv` — feedback granular por dimensión
+
+## Hallazgos principales
+- 88% de las propiedades opera por debajo de su propio benchmark interno
+- Facilities es el problema crítico: gap de 0.174, presente en 20 de 25 hoteles
+- 11 hoteles en alerta crítica — problema sistémico, no aislado
+- Recomendación de inversión: The Golden Oasis (Dubai) — mayor ROI potencial 
+  con incremento de tarifa estimado de 8–12%
+
+## Entregables
+- `dashboard.pbix` — Dashboard operativo con Gap Analysis, 
+   segmentación demográfica y alertas visuales (DAX + esquema estrella)
+- `reporte_estrategia.pdf` — Reporte ejecutivo en LaTeX dirigido al COO
+- `analisis.ipynb` — EDA completo en Python
+
+## Herramientas
+Python · Pandas · Power BI · DAX · Power Query · LaTeX

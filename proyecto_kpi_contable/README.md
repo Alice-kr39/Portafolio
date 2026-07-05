@@ -1,0 +1,20 @@
+
+# Reporte de KPIs Contables
+
+Proyecto básico de análisis financiero con Python.
+
+## 🛠️ Herramientas
+- Python
+- Pandas
+- Matplotlib
+- ReportLab
+
+## Archivos
+- `datos.py` — dataset ficticio y cálculo de KPIs
+- `kpi.py` — verificación de alertas
+- `grafica_reporte.py` — gráfica de ingresos, gastos y utilidad
+- `reporte_pdf.py` — generación del reporte en PDF
+- `main.py` — ejecuta todo el flujo
+
+##Descripción
+Script que analiza ingresos y gastos mensuales, detecta alertas cuando el margen o utilidad bajan del umbral definido y genera un reporte PDF con tabla y gráfica.

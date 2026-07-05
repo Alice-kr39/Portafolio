@@ -1,0 +1,91 @@
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![Google Sheets](https://img.shields.io/badge/Google_Sheets-34A853?style=for-the-badge&logo=googlesheets&logoColor=white)
+![n8n](https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white)
+![Odoo](https://img.shields.io/badge/Odoo-714B67?style=for-the-badge&logo=odoo&logoColor=white)
+
+## ETL Automatizado: n8n-Odoo-Google Sheets-Power BI
+
+# Pipeline automatizado de datos que integra Google Sheets con ERP (Odoo) usando n8n y conecta los KPIs resultantes a un dashboard en Power BI.
+
+
+Este proyecto simula un flujo de trabajo real de un área de BI/Datos:
+Se capturan pedidos desde una fuente simple como Google Sheets, se sincronizan con un sistema ERP, se calculan indicadores de negocio automáticamente, y se visualizan para la toma de decisiones sin 
+intervención manual una vez configurado, aunque sí requiere mantenimiento periódico (revisión de errores, ajustes de credenciales, mejoras como las documentadas en cada flujo). 
+
+##Estructura general
+
+
+```mermaid
+flowchart LR
+    A[Google Sheets] --> B[n8n Flujo 1]
+    B --> C[Odoo]
+    C --> D[n8n Flujo 2]
+    D --> E[Google Sheets Dashboard]
+    E --> F[Power BI]
+``` 
+
+
+## Resultado visual en Power BI
+
+Dashboard generado a partir del historial de KPIs, mostrando tarjetas principales, evolución de ventas en el tiempo y distribución de pedidos: capturas/dashboard_powerbi.png
+
+- **Total de ventas:** $449.86 mil MXN (acumulado del historial)
+- **Total de pedidos:** 51
+- **Ticket promedio:** $50.40 mil MXN
+- La gráfica de línea muestra la evolución real de ventas conforme se capturaron pedidos en Odoo en fechas distintas.
+
+## Flujo 1: Google Sheets -> Odoo
+
+Automatiza la creación de contactos en Odoo a partir de pedidos nuevos capturados en Sheets, evitando duplicados mediante una verificación previa.
+
+**Documentación completa:** [documentacion/documentacion_flujo1.md](documentacion/documentacion_flujo1.md)
+
+Incluye arquitectura del flujo, configuración nodo por nodo, y una bitácora de 10 errores reales encontrados durante el desarrollo con su causa raíz y solución 
+incluyendo una limitación conocida (procesamiento de múltiples filas simultáneas) con la mejora propuesta para una próxima iteración.
+
+
+## Flujo 2: Odoo -> Dashboard -> Power BI
+
+Extrae los pedidos de venta de Odoo, calcula KPIs de negocio, y mantiene un
+historial en Google Sheets que alimenta el dashboard de Power BI.
+
+**Documentación completa:** documentacion/documentacion_flujo2.md
+
+Incluye la evolución del código de cálculo de fechas (de usar la fecha de ejecución del flujo, a usar la fecha real del pedido en Odoo) y el procesode depuración correspondiente.
+
+## Pasos para reproducir el proyecto
+
+1. Crear cuenta gratuita en [n8n.io](https://n8n.io)
+2. Crear cuenta gratuita en [odoo.com/trial](https://www.odoo.com/trial) (módulo Ventas)
+3. Crear una copia de la hoja de Google Sheets con las pestañas
+   `Pedidos_Entrada` y `Dashboard_Ventas` (ver estructura de columnas en la
+   documentación de cada flujo)
+4. Importar los flujos JSON desde la carpeta `/flujos` en n8n
+5. Configurar las credenciales propias de Google y Odoo en cada flujo
+6. Activar los flujos
+7. Publicar la pestaña `Dashboard_Ventas` como CSV (Archivo -> Compartir -> Publicar en la web) y conectar esa URL en Power BI Desktop
+
+## Generación de documentación con Python
+La documentación técnica de este proyecto no se escribió directamente en Markdown o PDF , se generó con un script de Python que separa el contenido (en `contenido_flujo1.py`) de la lógica de 
+formato (en `generar_markdown.py`y `generar_pdf.py`). Esto permite mantener un solo lugar de verdad para el contenido y producir ambos formatos de salida sin duplicar texto.
+
+## Limitaciones conocidas (resumen)
+
+Procesamiento de múltiples filas a la vez en el Flujo 1 | Identificada, solución propuesta (SplitInBatches) no implementada por tiempo 
+Cálculo de ciudad_top y producto_top en el dashboard, actualmente fijo como texto, pendiente de cálculo dinámico 
+Actualización del dashboard en Power BI Manual (Power BI Desktop); se podría automatizar con Power BI Service
+
+
+## Stack 
+ETL-n8n Cloud 
+ERP-Odoo Online (Community) 
+Origen y almacenamiento de KPIs-Google Sheets 
+Visualización-Power BI Desktop
+Generación de documentación-Python (fpdf2) 
+
+
+
+![Autor](https://img.shields.io/badge/Autor-Alicia%20Carballo-green?logo=github)
+
+Proyecto de portafolio personal automatización de datos y BI.
