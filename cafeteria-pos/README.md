@@ -1,16 +1,22 @@
 # ☕ Cafetería POS — Punto de Venta
 
+
+![Python](https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?logo=supabase&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)
+![Git](https://img.shields.io/badge/Git-GitHub-181717?logo=github&logoColor=white)
+
 Sistema de punto de venta (POS) para una cafetería, construido como proyecto de aprendizaje de desarrollo de software. Permite registrar ventas, descontar inventario automáticamente y llevar un historial de movimientos, todo con una interfaz web sencilla.
 
-## 🚀 Demo en vivo
+## Demo en vivo
 
-👉 [Ver la app desplegada](#) <!-- Reemplazar con la URL de Streamlit Cloud una vez desplegada -->
+![flecha](https://ruta-a-tu-gif-de-flecha.gif) [Ver la app desplegada](#) <!-- Reemplazar con la URL de Streamlit Cloud una vez desplegada -->
 
-## 🎯 Motivación
+## Utilidad
 
 Este proyecto nace como ejercicio práctico para aprender a construir un sistema de gestión completo, de principio a fin: diseño de base de datos relacional, lógica de negocio en backend, e interfaz de usuario — inspirado en necesidades reales de pequeños negocios que llevan su operación de forma desorganizada (Excel, capturas de pantalla, facturas sueltas).
 
-## 🛠️ Stack tecnológico
+## Stack tecnológico
 
 | Capa | Tecnología |
 |---|---|
@@ -19,7 +25,7 @@ Este proyecto nace como ejercicio práctico para aprender a construir un sistema
 | Interfaz | Streamlit |
 | Control de versiones | Git + GitHub |
 
-## 📊 Estructura de la base de datos
+## Estructura de la base de datos
 
 ```
 empleados
@@ -38,7 +44,7 @@ inventario_movimientos
 ├── id, producto_id → productos, tipo, cantidad, fecha, motivo
 ```
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 - Selección de empleado que atiende la venta
 - Carrito de compra con múltiples productos
@@ -48,13 +54,13 @@ inventario_movimientos
   - Stock de productos
   - Historial de movimientos de inventario
 
-## 📸 Vista previa
 
-## 📸 Vista previa
+
+##  Vista previa
 
 ![Vista previa del POS](capturas/puntito_de_venta.png)
 
-## ⚙️ Instalación y uso local
+## Instalación y uso local
 
 1. Clona el repositorio
    ```bash
@@ -85,7 +91,7 @@ inventario_movimientos
    streamlit run app.py
    ```
 
-## 🗺️ Roadmap
+##  Roadmap
 
 - [x] Diseño de base de datos relacional
 - [x] Lógica de registro de ventas con actualización de inventario
@@ -94,7 +100,7 @@ inventario_movimientos
 - [ ] Reportes y dashboards con Power BI
 - [ ] Autenticación de usuarios
 
-## 👤 Autora
+## Autora
 
-**Cleopatra (Alice-kr39)** — proyecto de aprendizaje en desarrollo de software.
+** proyecto de aprendizaje en desarrollo de software.
 [GitHub](https://github.com/Alice-kr39)
