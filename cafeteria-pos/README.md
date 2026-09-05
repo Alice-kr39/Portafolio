@@ -50,7 +50,9 @@ inventario_movimientos
 
 ## 📸 Vista previa
 
-<!-- Agregar aquí una captura de pantalla de la app -->
+## 📸 Vista previa
+
+![Vista previa del POS](capturas/puntito_de_venta.png)
 
 ## ⚙️ Instalación y uso local
 
